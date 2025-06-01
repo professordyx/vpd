@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: Dominando o Value Proposition Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F0F0;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+            max-width: 600px;
+            border: 3px solid black;
+            box-shadow: 6px 6px 0px 0px black;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-line {
+            width: 4px;
+            background-color: black;
+            margin-left: calc(50% - 2px);
+            flex-grow: 1;
+            border: 1px solid black;
+        }
+        .flow-dot {
+            width: 24px;
+            height: 24px;
+            border: 3px solid black;
+            box-shadow: 3px 3px 0px 0px black;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0px;
+            padding: 1.5rem;
+            box-shadow: 8px 8px 0px 0px black;
+            margin-bottom: 2rem;
+            border: 4px solid black;
+        }
+        .btn-brutal {
+            border: 3px solid black;
+            box-shadow: 4px 4px 0px 0px black;
+            transition: all 0.1s ease-in-out;
+        }
+        .btn-brutal:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px black;
+        }
+    </style>
+</head>
+<body class="text-black antialiased">
+    
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-black leading-tight">Dominando o <span class="text-[#FF6B6B]">Value Proposition</span> <span class="text-[#06D6A0]">Design</span></h1>
+            <p class="text-lg md:text-xl text-gray-700 mt-4">Um guia visual para criar projetos que os clientes realmente desejam.</p>
+        </header>
+
+        <section id="problema" class="mb-20">
+            <div class="card grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-center">
+                    <p class="text-8xl md:text-9xl font-black text-[#FF6B6B]">72%</p>
+                    <p class="text-xl font-bold mt-2">Dos novos produtos falham.</p>
+                    <p class="mt-4 text-gray-800">Uma análise de mercado revelou que a maioria dos lançamentos não atende às expectativas dos clientes. A causa principal? Uma desconexão entre o que é oferecido e o que é verdadeiramente valorizado.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-black">A Solução: Foco no Valor</h3>
+                    <p class="text-gray-800 mb-4 text-center">O Value Proposition Design (VPD) é a metodologia que inverte essa estatística, alinhando as necessidades do cliente com as soluções do seu projeto para garantir a relevância e o sucesso.</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="failureRateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="canvas-vpc" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-black">O Coração da Estratégia: O Value Proposition Canvas</h2>
+                <p class="text-gray-700 mt-2">Uma ferramenta visual para mapear, desenhar e testar como você cria valor para os clientes.</p>
+            </div>
+            
+            <div class="card md:col-span-2 p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-gray-50 p-6 rounded-none border-4 border-black shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 text-center text-[#118AB2]">Mapa de Valor <span class="text-sm font-normal">(Sua Solução)</span></h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-none shadow-sm border-2 border-black">
+                                <h4 class="font-bold text-lg text-[#06D6A0]">Criadores de Ganhos</h4>
+                                <p class="text-sm text-gray-800">Como seus produtos geram os resultados e benefícios que seu cliente espera, deseja ou com os quais seria surpreendido?</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-none shadow-sm border-2 border-black">
+                                <h4 class="font-bold text-lg text-black">Produtos e Serviços</h4>
+                                <p class="text-sm text-gray-800">Uma lista do que você oferece que ajuda seu cliente a realizar tarefas funcionais, sociais ou emocionais.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-none shadow-sm border-2 border-black">
+                                <h4 class="font-bold text-lg text-[#FF6B6B]">Analgésicos</h4>
+                                <p class="text-sm text-gray-800">Como seus produtos aliviam as dores do cliente antes, durante e depois de realizar uma tarefa?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-none border-4 border-black shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 text-center text-[#118AB2]">Perfil do Cliente <span class="text-sm font-normal">(Sua Observação)</span></h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-none shadow-sm border-2 border-black">
+                                <h4 class="font-bold text-lg text-[#06D6A0]">Ganhos</h4>
+                                <p class="text-sm text-gray-800">Os resultados que os clientes querem alcançar ou os benefícios concretos que procuram.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-none shadow-sm border-2 border-black">
+                                <h4 class="font-bold text-lg text-black">Tarefas do Cliente</h4>
+                                <p class="text-sm text-gray-800">O que os clientes estão tentando fazer em seu trabalho e em suas vidas, conforme expresso em suas próprias palavras.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-none shadow-sm border-2 border-black">
+                                <h4 class="font-bold text-lg text-[#FF6B6B]">Dores</h4>
+                                <p class="text-sm text-gray-800">Emoções negativas, custos e situações indesejadas, e riscos que seu cliente experimenta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="mt-8 text-center text-gray-800">
+                    <p>O processo começa com uma compreensão profunda do cliente (<span class="font-bold">Perfil do Cliente</span>) para então projetar uma Proposta de Valor (<span class="font-bold">Mapa de Valor</span>) que se encaixe perfeitamente em suas necessidades.</p>
+                </div>
+            </div>
+
+            <div class="card mt-8">
+                <h3 class="text-2xl font-bold text-center mb-2 text-black">Entendendo as Motivações do Cliente</h3>
+                <p class="text-center text-gray-800 mb-6">As tarefas do cliente vão além do funcional. As motivações sociais e emocionais são frequentemente as mais poderosas.</p>
+                <div class="chart-container h-64 md:h-80">
+                    <canvas id="customerJobsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card mt-8">
+                <h3 class="text-2xl font-bold text-center mb-4 text-black">✨ Gerador de Ideias de Valor ✨</h3>
+                <p class="text-center text-gray-800 mb-4">Insira uma tarefa, dor ou ganho do cliente e deixe a IA gerar ideias para você!</p>
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
+                    <input type="text" id="geminiInput" placeholder="Ex: 'Esperar muito no caixa'" class="p-3 border-4 border-black rounded-none flex-grow focus:outline-none focus:ring-2 focus:ring-[#118AB2]">
+                    <button id="generateIdeasBtn" class="bg-[#118AB2] text-white px-6 py-3 rounded-none font-bold btn-brutal">Gerar Ideias</button>
+                </div>
+                <div id="geminiOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] flex items-center justify-center text-gray-800 text-center shadow-md">
+                    Suas ideias geradas aparecerão aqui.
+                </div>
+                <div id="loadingIndicator" class="hidden text-center mt-4 text-gray-800">Gerando ideias...</div>
+            </div>
+
+            <div class="card mt-8">
+                <h3 class="text-2xl font-bold text-center mb-4 text-black">✨ Analisador de Proposta de Valor ✨</h3>
+                <p class="text-center text-gray-800 mb-4">Insira sua proposta de valor para receber feedback da IA.</p>
+                <div class="flex flex-col gap-4 items-center justify-center">
+                    <textarea id="analyzeInput" placeholder="Ex: 'Nossa plataforma ajuda pequenas empresas a gerenciar suas finanças de forma simples e rápida, eliminando o estresse da contabilidade manual.'" rows="4" class="p-3 border-4 border-black rounded-none w-full focus:outline-none focus:ring-2 focus:ring-[#06D6A0]"></textarea>
+                    <button id="analyzeVpBtn" class="bg-[#06D6A0] text-white px-6 py-3 rounded-none font-bold btn-brutal">Analisar Proposta</button>
+                </div>
+                <div id="analyzeOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] flex items-center justify-center text-gray-800 text-center shadow-md">
+                    O feedback da análise aparecerá aqui.
+                </div>
+                <div id="analyzeLoadingIndicator" class="hidden text-center mt-4 text-gray-800">Analisando proposta...</div>
+            </div>
+
+            <div class="card mt-8">
+                <h3 class="text-2xl font-bold text-center mb-4 text-black">✨ Gerador de Personas de Cliente ✨</h3>
+                <p class="text-center text-gray-800 mb-4">Descreva o tipo de cliente e a IA criará uma persona detalhada para você!</p>
+                <div class="flex flex-col gap-4 items-center justify-center">
+                    <input type="text" id="personaInput" placeholder="Ex: 'Jovem profissional, 25 anos, interessado em tecnologia e sustentabilidade'" class="p-3 border-4 border-black rounded-none flex-grow w-full focus:outline-none focus:ring-2 focus:ring-[#FFD166]">
+                    <button id="generatePersonaBtn" class="bg-[#FFD166] text-black px-6 py-3 rounded-none font-bold btn-brutal">Gerar Persona</button>
+                </div>
+                <div id="personaOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] flex items-center justify-center text-gray-800 text-center shadow-md">
+                    Sua persona gerada aparecerá aqui.
+                </div>
+                <div id="personaLoadingIndicator" class="hidden text-center mt-4 text-gray-800">Gerando persona...</div>
+            </div>
+
+        </section>
+
+        <section id="processo" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-black">O Processo de 3 Passos para o "Fit" Perfeito</h2>
+                <p class="text-gray-700 mt-2">Siga um caminho estruturado para garantir que sua solução ressoe com seu público.</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="w-full max-w-2xl">
+                    <div class="flex items-start">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="flow-dot bg-[#118AB2] rounded-full flex items-center justify-center text-white font-bold">1</div>
+                            <div class="flow-line"></div>
+                        </div>
+                        <div class="card flex-1 -mt-2">
+                            <h3 class="text-2xl font-bold text-[#118AB2]">Mergulhe no Cliente</h3>
+                            <p class="text-gray-800 mt-2">Comece sempre pelo cliente. Use entrevistas, pesquisas e observação para mapear suas tarefas, dores e ganhos. Priorize o que é mais crítico para eles, não para você.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="flow-dot bg-[#118AB2] rounded-full flex items-center justify-center text-white font-bold">2</div>
+                            <div class="flow-line"></div>
+                        </div>
+                        <div class="card flex-1 -mt-2">
+                            <h3 class="text-2xl font-bold text-[#118AB2]">Desenhe a Solução</h3>
+                            <p class="text-gray-800 mt-2">Com base no perfil do cliente, faça um brainstorming de como seus produtos podem aliviar as dores mais intensas e criar os ganhos mais desejados. Foque no impacto.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start">
+                        <div class="flex flex-col items-center mr-6">
+                            <div class="flow-dot bg-[#06D6A0] rounded-full flex items-center justify-center text-white font-bold">✓</div>
+                        </div>
+                        <div class="card flex-1 -mt-2">
+                            <h3 class="text-2xl font-bold text-[#06D6A0]">Valide para Alcançar o "Fit"</h3>
+                            <p class="text-gray-800 mt-2">"Fit" é quando sua solução se conecta perfeitamente às necessidades do cliente. Mas não presuma, valide! Crie protótipos, colete feedback e itere. O aprendizado contínuo é a chave para o sucesso.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="card mt-8">
+                <h3 class="text-2xl font-bold text-center mb-2 text-black">Priorizando Dores e Ganhos</h3>
+                 <p class="text-center text-gray-800 mb-6">Concentre seus esforços onde eles terão o maior impacto. Use um mapa de bolhas para visualizar e priorizar as necessidades do cliente, onde o tamanho representa a intensidade ou urgência.</p>
+                <div class="chart-container">
+                    <canvas id="priorityBubbleChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="boas-praticas" class="mb-20">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-black">Princípios para uma Proposta Vencedora</h2>
+                <p class="text-gray-700 mt-2">Evite armadilhas comuns e adote as melhores práticas.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#06D6A0]">O que fazer (Do's)</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-green-500 text-2xl mr-3">✓</span>
+                            <div>
+                                <h4 class="font-bold text-black">Foque na Excelência</h4>
+                                <p class="text-sm text-gray-800">Resolva poucas tarefas, dores e ganhos, mas faça isso excepcionalmente bem.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 text-2xl mr-3">✓</span>
+                            <div>
+                                <h4 class="font-bold text-black">Seja Específico</h4>
+                                <p class="text-sm text-gray-800">Segmente seus clientes. Uma proposta "para todos" geralmente não atrai ninguém.</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <span class="text-green-500 text-2xl mr-3">✓</span>
+                            <div>
+                                <h4 class="font-bold text-black">Valide Constantemente</h4>
+                                <p class="text-sm text-gray-800">Suas ideias são hipóteses. Teste-as com clientes reais para transformá-las em fatos.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="card">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FF6B6B]">O que evitar (Don'ts)</h3>
+                     <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-red-500 text-2xl mr-3">✗</span>
+                            <div>
+                                <h4 class="font-bold text-black">Resolver Tudo</h4>
+                                <p class="text-sm text-gray-800">Tentar abordar todas as dores e ganhos resulta em uma solução diluída e sem foco.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                           <span class="text-red-500 text-2xl mr-3">✗</span>
+                            <div>
+                                <h4 class="font-bold text-black">Focar só no Funcional</h4>
+                                <p class="text-sm text-gray-800">Ignorar as tarefas emocionais e sociais é perder as motivações mais poderosas dos clientes.</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <span class="text-red-500 text-2xl mr-3">✗</span>
+                            <div>
+                                <h4 class="font-bold text-black">Partir da Solução</h4>
+                                <p class="text-sm text-gray-800">Não crie o perfil do cliente através da lente da sua ideia. Apaixone-se pelo problema, não pela sua solução.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="exemplos" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-black">Inspiração do Mundo Real</h2>
+                <p class="text-gray-700 mt-2">Veja como marcas de sucesso comunicam seu valor de forma clara e concisa.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card text-center">
+                    <h3 class="text-2xl font-bold text-black">Asana</h3>
+                    <p class="text-gray-800 mt-4">"Proporcione clareza e impacto em larga escala ao conectar as atividades e os fluxos de trabalho às metas gerais da empresa."</p>
+                    <div class="mt-6 pt-4 border-t-2 border-black">
+                        <p class="text-sm font-bold text-[#118AB2]">Promessa: Clareza e impacto.</p>
+                    </div>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-2xl font-bold text-black">Mailchimp</h3>
+                    <p class="text-gray-800 mt-4">"Conquiste novos clientes com a plataforma número um de marketing por e-mail e automações, que sugere maneiras de conseguir mais aberturas, cliques e vendas."</p>
+                     <div class="mt-6 pt-4 border-t-2 border-black">
+                        <p class="text-sm font-bold text-[#118AB2]">Promessa: Mais clientes e vendas.</p>
+                    </div>
+                </div>
+                <div class="card text-center md:col-span-2 lg:col-span-1">
+                     <h3 class="text-2xl font-bold text-black">Google Meet</h3>
+                    <p class="text-gray-800 mt-4">"Videochamadas com qualquer pessoa, em qualquer lugar. Interaja e colabore com amigos, familiares e colegas de onde estiver."</p>
+                     <div class="mt-6 pt-4 border-t-2 border-black">
+                        <p class="text-sm font-bold text-[#118AB2]">Promessa: Conexão simples e universal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-800 border-t-4 border-black pt-8">
+            <p>Este infográfico é uma ferramenta para ajudar estudantes a aplicarem o Value Proposition Design.</p>
+            <p class="text-sm mt-2">Construído com base no guia para alunos, utilizando Chart.js e Tailwind CSS.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const vibrantPalette = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C',
+            lightGray: '#F7FAFC',
+            gray: '#A0AEC0'
+        };
+
+        const wrapLabel = (str, maxLen = 16) => {
+            if (str.length <= maxLen) return str;
+            
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLen) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'black'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: 'black' },
+                    grid: { color: '#D0D0D0' }
+                },
+                x: {
+                    ticks: { color: 'black' },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('failureRateChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Sem VPD', 'Com VPD'],
+                datasets: [{
+                    label: 'Taxa de Falha de Produtos',
+                    data: [72, 28],
+                    backgroundColor: [vibrantPalette.red, vibrantPalette.green],
+                    borderColor: 'black',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                scales: {
+                     y: {
+                        ticks: { color: 'black', font: { size: 14 } },
+                        grid: { display: false }
+                    },
+                    x: {
+                        ticks: { color: 'black' },
+                        grid: { color: '#D0D0D0' },
+                        max: 100
+                    }
+                },
+                 plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('customerJobsChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Tarefas Funcionais', 'Tarefas Emocionais', 'Tarefas Sociais'],
+                datasets: [{
+                    label: 'Tipos de Tarefas do Cliente',
+                    data: [40, 30, 30],
+                    backgroundColor: [
+                        vibrantPalette.blue,
+                        vibrantPalette.yellow,
+                        vibrantPalette.green
+                    ],
+                    borderColor: 'black',
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                 responsive: true,
+                 maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        position: 'top',
+                         labels: {
+                            color: 'black',
+                            font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('priorityBubbleChart'), {
+            type: 'bubble',
+            data: {
+                datasets: [
+                {
+                    label: 'Ganhos Desejados',
+                    data: [
+                        {x: 2, y: 8, r: 25},
+                        {x: 4, y: 5, r: 15},
+                        {x: 7, y: 7, r: 18}
+                    ],
+                    backgroundColor: `${vibrantPalette.green}B3`,
+                    borderColor: 'black',
+                    borderWidth: 2
+                }, {
+                    label: 'Dores Intensas',
+                    data: [
+                        {x: 8, y: 3, r: 30},
+                        {x: 5, y: 2, r: 22},
+                        {x: 3, y: 4, r: 12}
+                    ],
+                    backgroundColor: `${vibrantPalette.red}B3`,
+                    borderColor: 'black',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    y: { 
+                        title: { display: true, text: 'Importância para o Cliente', color: 'black' },
+                        ticks: { color: 'black' },
+                        grid: { color: '#D0D0D0' }
+                    },
+                    x: {
+                         title: { display: true, text: 'Frequência da Ocorrência', color: 'black' },
+                        ticks: { color: 'black' },
+                        grid: { color: '#D0D0D0' }
+                    }
+                },
+                 plugins: {
+                    legend: {
+                        position: 'top',
+                         labels: {
+                            color: 'black',
+                            font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: (tooltipItems) => { return tooltipItems[0].dataset.label; }
+                         }
+                    }
+                }
+            }
+        });
+
+        document.getElementById('generateIdeasBtn').addEventListener('click', async () => {
+            const input = document.getElementById('geminiInput').value.trim();
+            const outputDiv = document.getElementById('geminiOutput');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+
+            if (!input) {
+                outputDiv.innerHTML = '<p class="text-red-500">Por favor, insira uma tarefa, dor ou ganho.</p>';
+                return;
+            }
+
+            outputDiv.innerHTML = '';
+            loadingIndicator.classList.remove('hidden');
+
+            try {
+                let chatHistory = [];
+                const prompt = `Dado o seguinte conceito de Value Proposition Design (Tarefa do Cliente, Dor ou Ganho): '${input}'. Gere 3 ideias criativas e concisas para Analgésicos ou Criadores de Ganhos que poderiam ser desenvolvidos para abordar isso. Formate a resposta como uma lista numerada.`;
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputDiv.innerHTML = `<pre class="whitespace-pre-wrap text-left">${text}</pre>`;
+                } else {
+                    outputDiv.innerHTML = '<p class="text-red-500">Não foi possível gerar ideias. Tente novamente.</p>';
+                }
+            } catch (error) {
+                console.error('Erro ao chamar a API Gemini:', error);
+                outputDiv.innerHTML = '<p class="text-red-500">Ocorreu um erro ao gerar ideias. Verifique o console para mais detalhes.</p>';
+            } finally {
+                loadingIndicator.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('analyzeVpBtn').addEventListener('click', async () => {
+            const input = document.getElementById('analyzeInput').value.trim();
+            const outputDiv = document.getElementById('analyzeOutput');
+            const loadingIndicator = document.getElementById('analyzeLoadingIndicator');
+
+            if (!input) {
+                outputDiv.innerHTML = '<p class="text-red-500">Por favor, insira uma proposta de valor para análise.</p>';
+                return;
+            }
+
+            outputDiv.innerHTML = '';
+            loadingIndicator.classList.remove('hidden');
+
+            try {
+                let chatHistory = [];
+                const prompt = `Analise a seguinte proposta de valor com base nos princípios do Value Proposition Design (clareza, concisão, foco nas dores/ganhos do cliente, diferenciação). Forneça feedback construtivo em pontos-chave e sugestões de melhoria. Proposta de Valor: '${input}'`;
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputDiv.innerHTML = `<pre class="whitespace-pre-wrap text-left">${text}</pre>`;
+                } else {
+                    outputDiv.innerHTML = '<p class="text-red-500">Não foi possível analisar a proposta. Tente novamente.</p>';
+                }
+            } catch (error) {
+                console.error('Erro ao chamar a API Gemini para análise:', error);
+                outputDiv.innerHTML = '<p class="text-red-500">Ocorreu um erro ao analisar a proposta. Verifique o console para mais detalhes.</p>';
+            } finally {
+                loadingIndicator.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('generatePersonaBtn').addEventListener('click', async () => {
+            const input = document.getElementById('personaInput').value.trim();
+            const outputDiv = document.getElementById('personaOutput');
+            const loadingIndicator = document.getElementById('personaLoadingIndicator');
+
+            if (!input) {
+                outputDiv.innerHTML = '<p class="text-red-500">Por favor, insira uma descrição para a persona.</p>';
+                return;
+            }
+
+            outputDiv.innerHTML = '';
+            loadingIndicator.classList.remove('hidden');
+
+            try {
+                let chatHistory = [];
+                const prompt = `Crie uma persona de cliente detalhada com base na seguinte descrição: '${input}'. Inclua nome, idade, ocupação (se aplicável), um breve histórico, suas principais tarefas (funcionais, sociais, emocionais), suas dores e seus ganhos desejados, relevantes para o Value Proposition Design. Formate a resposta de forma clara e concisa, como um perfil de persona.`;
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputDiv.innerHTML = `<pre class="whitespace-pre-wrap text-left">${text}</pre>`;
+                } else {
+                    outputDiv.innerHTML = '<p class="text-red-500">Não foi possível gerar a persona. Tente novamente.</p>';
+                }
+            } catch (error) {
+                console.error('Erro ao chamar a API Gemini para gerar persona:', error);
+                outputDiv.innerHTML = '<p class="text-red-500">Ocorreu um erro ao gerar a persona. Verifique o console para mais detalhes.</p>';
+            } finally {
+                loadingIndicator.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+
