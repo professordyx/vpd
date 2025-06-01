@@ -548,7 +548,7 @@
                 const prompt = `Dado o seguinte conceito de Value Proposition Design (Tarefa do Cliente, Dor ou Ganho): '${input}'. Gere 3 ideias criativas e concisas para Analgésicos ou Criadores de Ganhos que poderiam ser desenvolvidos para abordar isso. Formate a resposta como uma lista numerada.`;
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                 const payload = { contents: chatHistory };
-                const apiKey = "";
+                const apiKey = "AIzaSyC3Zpp_97d8EubTr9cRghOCPSIK7fTI-t4";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
