@@ -592,7 +592,7 @@
                 const prompt = `Analise a seguinte proposta de valor com base nos princípios do Value Proposition Design (clareza, concisão, foco nas dores/ganhos do cliente, diferenciação). Forneça feedback construtivo em pontos-chave e sugestões de melhoria. Proposta de Valor: '${input}'`;
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                 const payload = { contents: chatHistory };
-                const apiKey = "";
+                const apiKey = "AIzaSyC3Zpp_97d8EubTr9cRghOCPSIK7fTI-t4";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -636,7 +636,7 @@
                 const prompt = `Crie uma persona de cliente detalhada com base na seguinte descrição: '${input}'. Inclua nome, idade, ocupação (se aplicável), um breve histórico, suas principais tarefas (funcionais, sociais, emocionais), suas dores e seus ganhos desejados, relevantes para o Value Proposition Design. Formate a resposta de forma clara e concisa, como um perfil de persona.`;
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                 const payload = { contents: chatHistory };
-                const apiKey = "";
+                const apiKey = "AIzaSyC3Zpp_97d8EubTr9cRghOCPSIK7fTI-t4";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
