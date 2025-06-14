@@ -6,6 +6,7 @@
     <title data-lang-key="title">Infográfico: Dominando o Value Proposition Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -58,16 +59,29 @@
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0px 0px black;
         }
+        .markdown-output {
+            text-align: left;
+        }
+        .markdown-output ul, .markdown-output ol {
+            list-style-position: inside;
+            padding-left: 1.5rem;
+        }
+        .markdown-output li {
+            margin-bottom: 0.5rem;
+        }
+        .markdown-output strong {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="text-black antialiased">
     
     <div class="container mx-auto p-4 md:p-8 max-w-5xl">
 
-        <header class="text-center mb-16 relative">
-            <div class="absolute top-0 right-0 flex space-x-2">
-                <button id="langPtBtn" class="bg-[#FFD166] text-black px-4 py-2 rounded-none font-bold btn-brutal">PT</button>
-                <button id="langEsBtn" class="bg-[#118AB2] text-white px-4 py-2 rounded-none font-bold btn-brutal">ES</button>
+        <header class="text-center mb-16 relative pt-16">
+            <div class="absolute top-4 right-4 flex space-x-2">
+                <button id="langPtBtn" class="bg-[#FFD166] text-black px-3 py-1.5 rounded-none font-bold btn-brutal">PT</button>
+                <button id="langEsBtn" class="bg-[#118AB2] text-white px-3 py-1.5 rounded-none font-bold btn-brutal">ES</button>
             </div>
             <h1 class="text-4xl md:text-6xl font-black text-black leading-tight" data-lang-key="headerTitle">Dominando o <span class="text-[#FF6B6B]">Value Proposition</span> <span class="text-[#06D6A0]">Design</span></h1>
             <p class="text-lg md:text-xl text-gray-700 mt-4" data-lang-key="headerSubtitle">Um guia visual para criar projetos que os clientes realmente desejam.</p>
@@ -154,7 +168,7 @@
                     <input type="text" id="geminiInput" placeholder="" class="p-3 border-4 border-black rounded-none flex-grow focus:outline-none focus:ring-2 focus:ring-[#118AB2]" data-lang-key="ideaPlaceholder">
                     <button id="generateIdeasBtn" class="bg-[#118AB2] text-white px-6 py-3 rounded-none font-bold btn-brutal" data-lang-key="generateButton">Gerar Ideias</button>
                 </div>
-                <div id="geminiOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] flex items-center justify-center text-gray-800 text-center shadow-md" data-lang-key="ideaOutputPlaceholder">
+                <div id="geminiOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] shadow-md markdown-output" data-lang-key="ideaOutputPlaceholder">
                     Suas ideias geradas aparecerão aqui.
                 </div>
                 <div class="flex flex-wrap gap-2 justify-center mt-4">
@@ -171,7 +185,7 @@
                     <textarea id="analyzeInput" placeholder="" rows="4" class="p-3 border-4 border-black rounded-none w-full focus:outline-none focus:ring-2 focus:ring-[#06D6A0]" data-lang-key="analyzerPlaceholder"></textarea>
                     <button id="analyzeVpBtn" class="bg-[#06D6A0] text-white px-6 py-3 rounded-none font-bold btn-brutal" data-lang-key="analyzeButton">Analisar Proposta</button>
                 </div>
-                <div id="analyzeOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] flex items-center justify-center text-gray-800 text-center shadow-md" data-lang-key="analyzerOutputPlaceholder">
+                <div id="analyzeOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] shadow-md markdown-output" data-lang-key="analyzerOutputPlaceholder">
                     O feedback da análise aparecerá aqui.
                 </div>
                  <div class="flex flex-wrap gap-2 justify-center mt-4">
@@ -188,7 +202,7 @@
                     <input type="text" id="personaInput" placeholder="" class="p-3 border-4 border-black rounded-none flex-grow w-full focus:outline-none focus:ring-2 focus:ring-[#FFD166]" data-lang-key="personaPlaceholder">
                     <button id="generatePersonaBtn" class="bg-[#FFD166] text-black px-6 py-3 rounded-none font-bold btn-brutal" data-lang-key="generatePersonaButton">Gerar Persona</button>
                 </div>
-                <div id="personaOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] flex items-center justify-center text-gray-800 text-center shadow-md" data-lang-key="personaOutputPlaceholder">
+                <div id="personaOutput" class="mt-6 p-4 bg-gray-50 rounded-none border-4 border-black min-h-[100px] shadow-md markdown-output" data-lang-key="personaOutputPlaceholder">
                     Sua persona gerada aparecerá aqui.
                 </div>
                 <div class="flex flex-wrap gap-2 justify-center mt-4">
@@ -357,7 +371,7 @@
             gray: '#A0AEC0'
         };
 
-        let currentLanguage = 'pt-BR'; // Default language
+        let currentLanguage = 'pt-BR';
 
         const translations = {
             'pt-BR': {
@@ -385,8 +399,8 @@
                 painsTitle: 'Dores',
                 painsDesc: 'Emoções negativas, custos e situações indesejadas, e riscos que seu cliente experimenta.',
                 vpcIntroText: 'O processo começa com uma compreensão profunda do cliente (<span class="font-bold" data-lang-key="customerProfileText">Perfil do Cliente</span>) para então projetar uma Proposta de Valor (<span class="font-bold" data-lang-key="valueMapText">Mapa de Valor</span>) que se encaixe perfeitamente em suas necessidades.',
-                customerProfileText: 'Perfil do Cliente', // For inner span
-                valueMapText: 'Mapa de Valor', // For inner span
+                customerProfileText: 'Perfil do Cliente',
+                valueMapText: 'Mapa de Valor',
                 customerMotivationHeading: 'Entendendo as Motivações do Cliente',
                 customerMotivationDesc: 'As tarefas do cliente vão além do funcional. As motivações sociais e emocionais são frequentemente as mais poderosas.',
                 ideaGeneratorHeading: '✨ Gerador de Ideias de Valor ✨',
@@ -395,18 +409,25 @@
                 generateButton: 'Gerar Ideias',
                 ideaOutputPlaceholder: 'Suas ideias geradas aparecerão aqui.',
                 loadingIdeas: 'Gerando ideias...',
+                ideaInputError: 'Por favor, insira uma tarefa, dor ou ganho.',
+                ideaGenerationError: 'Não foi possível gerar ideias. Tente novamente.',
                 analyzerHeading: '✨ Analisador de Proposta de Valor ✨',
                 analyzerDesc: 'Insira sua proposta de valor para receber feedback da IA.',
                 analyzerPlaceholder: "Ex: 'Nossa plataforma ajuda pequenas empresas a gerenciar suas finanças de forma simples e rápida, eliminando o estresse da contabilidade manual.'",
                 analyzeButton: 'Analisar Proposta',
                 analyzerOutputPlaceholder: 'O feedback da análise aparecerá aqui.',
                 loadingAnalyze: 'Analisando proposta...',
+                analyzeInputError: 'Por favor, insira uma proposta de valor para análise.',
+                analyzeGenerationError: 'Não foi possível analisar a proposta. Tente novamente.',
                 personaGeneratorHeading: '✨ Gerador de Personas de Cliente ✨',
                 personaGeneratorDesc: 'Descreva o tipo de cliente e a IA criará uma persona detalhada para você!',
                 personaPlaceholder: "Ex: 'Jovem profissional, 25 anos, interessado em tecnologia e sustentabilidade'",
                 generatePersonaButton: 'Gerar Persona',
                 personaOutputPlaceholder: 'Sua persona gerada aparecerá aqui.',
                 loadingPersona: 'Gerando persona...',
+                personaInputError: 'Por favor, insira uma descrição para a persona.',
+                personaGenerationError: 'Não foi possível gerar a persona. Tente novamente.',
+                generalError: 'Ocorreu um erro. Verifique o console para mais detalhes.',
                 processMainHeading: 'O Processo de 3 Passos para o "Fit" Perfeito',
                 processSubtitle: 'Siga um caminho estruturado para garantir que sua solução ressoe com seu público.',
                 step1Heading: 'Mergulhe no Cliente',
@@ -480,8 +501,8 @@
                 painsTitle: 'Dolores',
                 painsDesc: 'Emociones negativas, costos y situaciones indeseadas, y riesgos que tu cliente experimenta.',
                 vpcIntroText: 'El proceso comienza con una comprensión profunda del cliente (<span class="font-bold" data-lang-key="customerProfileText">Perfil del Cliente</span>) para luego diseñar una Propuesta de Valor (<span class="font-bold" data-lang-key="valueMapText">Mapa de Valor</span>) que se ajuste perfectamente a sus necesidades.',
-                customerProfileText: 'Perfil del Cliente', // For inner span
-                valueMapText: 'Mapa de Valor', // For inner span
+                customerProfileText: 'Perfil del Cliente',
+                valueMapText: 'Mapa de Valor',
                 customerMotivationHeading: 'Entendiendo las Motivaciones del Cliente',
                 customerMotivationDesc: 'Las tareas del cliente van más allá de lo funcional. Las motivaciones sociales y emocionales son frecuentemente las más poderosas.',
                 ideaGeneratorHeading: '✨ Generador de Ideas de Valor ✨',
@@ -490,18 +511,25 @@
                 generateButton: 'Generar Ideas',
                 ideaOutputPlaceholder: 'Tus ideas generadas aparecerán aquí.',
                 loadingIdeas: 'Generando ideas...',
+                ideaInputError: 'Por favor, inserta una tarea, dolor o ganancia.',
+                ideaGenerationError: 'No fue posible generar ideas. Intenta de nuevo.',
                 analyzerHeading: '✨ Analizador de Propuesta de Valor ✨',
                 analyzerDesc: 'Inserta tu propuesta de valor para recibir comentarios de la IA.',
                 analyzerPlaceholder: "Ej: 'Nuestra plataforma ayuda a pequeñas empresas a gestionar sus finanzas de forma sencilla y rápida, eliminando el estrés de la contabilidad manual.'",
                 analyzeButton: 'Analizar Propuesta',
                 analyzerOutputPlaceholder: 'Los comentarios del análisis aparecerán aquí.',
                 loadingAnalyze: 'Analizando propuesta...',
+                analyzeInputError: 'Por favor, inserta una propuesta de valor para análisis.',
+                analyzeGenerationError: 'No fue posible analizar la propuesta. Intenta de nuevo.',
                 personaGeneratorHeading: '✨ Generador de Personas de Cliente ✨',
                 personaGeneratorDesc: '¡Describe el tipo de cliente y la IA creará una persona detallada para ti!',
                 personaPlaceholder: "Ej: 'Joven profesional, 25 años, interesado en tecnología y sostenibilidad'",
                 generatePersonaButton: 'Generar Persona',
                 personaOutputPlaceholder: 'Tu persona generada aparecerá aquí.',
                 loadingPersona: 'Generando persona...',
+                personaInputError: 'Por favor, inserta una descripción para la persona.',
+                personaGenerationError: 'No fue posible generar la persona. Intenta de nuevo.',
+                generalError: 'Ocurrió un error. Verifica la consola para más detalles.',
                 processMainHeading: 'El Proceso de 3 Pasos para el "Ajuste" Perfecto',
                 processSubtitle: 'Sigue un camino estructurado para garantizar que tu solución resuene con tu público.',
                 step1Heading: 'Sumérgete en el Cliente',
@@ -534,7 +562,7 @@
                 asanaPromise: 'Promesa: Claridad e impacto.',
                 mailchimpDesc: '"Consigue nuevos clientes con la plataforma número uno de marketing por correo electrónico y automatizaciones, que sugiere formas de conseguir más aperturas, clics y ventas."',
                 mailchimpPromise: 'Promesa: Más clientes y ventas.',
-                googleMeetDesc: '"Videollamadas con cualquier persona, en cualquier lugar. Interactúa y colabora con amigos, familiares y colegas desde donde estés."',
+                googleMeetDesc: '"Videollamadas con cualquier persona, em qualquer lugar. Interactúa y colabora con amigos, familiares y colegas desde donde estés."',
                 googleMeetPromise: 'Promesa: Conexión sencilla y universal.',
                 footerLine1: 'Esta infografía es una herramienta para ayudar a los estudiantes a aplicar el Diseño de Propuesta de Valor.',
                 footerLine2: 'Construido con base en la guía para estudiantes, utilizando Chart.js y Tailwind CSS.',
@@ -562,8 +590,8 @@
                 if (translations[lang][key]) {
                     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                         el.placeholder = translations[lang][key];
-                    } else if (el.dataset.langKey === 'headerTitle' || el.dataset.langKey === 'valueMapHeading' || el.dataset.langKey === 'customerProfileHeading' || el.dataset.langKey === 'vpcIntroText') {
-                        el.innerHTML = translations[lang][key]; // Use innerHTML for titles with spans
+                    } else if (el.dataset.langKey === 'headerTitle' || el.dataset.langKey === 'valueMapHeading' || el.dataset.langKey === 'customerProfileHeading' || el.dataset.lang-key === 'vpcIntroText') { // Corrected data-lang-key
+                        el.innerHTML = translations[lang][key];
                     }
                     else {
                         el.innerText = translations[lang][key];
@@ -763,12 +791,10 @@
         document.getElementById('langPtBtn').addEventListener('click', () => updateContent('pt-BR'));
         document.getElementById('langEsBtn').addEventListener('click', () => updateContent('es'));
 
-        // Initial content load
         document.addEventListener('DOMContentLoaded', () => {
             updateContent(currentLanguage);
         });
 
-        // Gemini Idea Generator
         document.getElementById('generateIdeasBtn').addEventListener('click', async () => {
             const input = document.getElementById('geminiInput').value.trim();
             const outputDiv = document.getElementById('geminiOutput');
@@ -806,11 +832,11 @@
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
                     const text = result.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = `<pre class="whitespace-pre-wrap text-left">${text}</pre>`;
+                    outputDiv.innerHTML = marked.parse(text);
                     exportTxtBtn.classList.remove('hidden');
                     exportHtmlBtn.classList.remove('hidden');
                     exportTxtBtn.onclick = () => exportAsText(text, 'ideas_geradas.txt');
-                    exportHtmlBtn.onclick = () => exportAsHtml(`<pre>${text}</pre>`, 'ideas_geradas.html');
+                    exportHtmlBtn.onclick = () => exportAsHtml(marked.parse(text), 'ideas_geradas.html');
                 } else {
                     outputDiv.innerHTML = `<p class="text-red-500">${translations[currentLanguage].ideaGenerationError}</p>`;
                 }
@@ -822,7 +848,6 @@
             }
         });
 
-        // Gemini Analyzer
         document.getElementById('analyzeVpBtn').addEventListener('click', async () => {
             const input = document.getElementById('analyzeInput').value.trim();
             const outputDiv = document.getElementById('analyzeOutput');
@@ -860,11 +885,11 @@
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
                     const text = result.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = `<pre class="whitespace-pre-wrap text-left">${text}</pre>`;
+                    outputDiv.innerHTML = marked.parse(text);
                     exportTxtBtn.classList.remove('hidden');
                     exportHtmlBtn.classList.remove('hidden');
                     exportTxtBtn.onclick = () => exportAsText(text, 'analise_proposta.txt');
-                    exportHtmlBtn.onclick = () => exportAsHtml(`<pre>${text}</pre>`, 'analise_proposta.html');
+                    exportHtmlBtn.onclick = () => exportAsHtml(marked.parse(text), 'analise_proposta.html');
                 } else {
                     outputDiv.innerHTML = `<p class="text-red-500">${translations[currentLanguage].analyzeGenerationError}</p>`;
                 }
@@ -876,7 +901,6 @@
             }
         });
 
-        // Gemini Persona Generator
         document.getElementById('generatePersonaBtn').addEventListener('click', async () => {
             const input = document.getElementById('personaInput').value.trim();
             const outputDiv = document.getElementById('personaOutput');
@@ -914,11 +938,11 @@
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
                     const text = result.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = `<pre class="whitespace-pre-wrap text-left">${text}</pre>`;
+                    outputDiv.innerHTML = marked.parse(text);
                     exportTxtBtn.classList.remove('hidden');
                     exportHtmlBtn.classList.remove('hidden');
                     exportTxtBtn.onclick = () => exportAsText(text, 'persona_gerada.txt');
-                    exportHtmlBtn.onclick = () => exportAsHtml(`<pre>${text}</pre>`, 'persona_gerada.html');
+                    exportHtmlBtn.onclick = () => exportAsHtml(marked.parse(text), 'persona_gerada.html');
                 } else {
                     outputDiv.innerHTML = `<p class="text-red-500">${translations[currentLanguage].personaGenerationError}</p>`;
                 }
@@ -930,7 +954,6 @@
             }
         });
 
-        // Export Functions
         function exportAsText(content, filename) {
             const blob = new Blob([content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
@@ -955,7 +978,6 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
-
     </script>
 </body>
 </html>
